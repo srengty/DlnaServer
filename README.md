@@ -1,10 +1,11 @@
 # DlnaServer
-通过Cybergarage实现的DLNA Server
+DLNA Server via Cybergriage
 
-#基本实现
-根据android提供的接口获取所有的音乐文件，然后通过CyberGarage提供的协议栈实现DLNA Server。
-可以实现通过DMC浏览DLNA Server分享的音乐文件，但是目前没有实现Http Server，因此还不能通过DMC实现媒体的播放，
-具体的可以参考：[![NanoHTTPD]](https://github.com/NanoHttpd/nanohttpd)  
+#Basic implementation Obtain all music files according to the interface provided by android, 
+and then implement DLNA Server through the protocol stack provided by CyberGarage. 
+It is possible to browse music files shared by DLNA Server through DMC, 
+but currently does not implement Http Server, so it is not possible to play media through DMC. 
+For details, please refer to：[![NanoHTTPD]](https://github.com/NanoHttpd/nanohttpd)  
 
 
 ## UPNP协议库实现

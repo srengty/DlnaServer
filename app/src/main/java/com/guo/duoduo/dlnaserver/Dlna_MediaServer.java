@@ -14,6 +14,7 @@ import org.cybergarage.xml.AttributeList;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.util.Log;
 
 
 public class Dlna_MediaServer
@@ -57,7 +58,7 @@ public class Dlna_MediaServer
 
         String[] audioColumns = {MediaStore.Audio.Media._ID,
             MediaStore.Audio.Media.TITLE, MediaStore.Audio.Media.DATA,
-            MediaStore.Audio.Media.SIZE, MediaStore.Audio.Media.DURATION};
+            MediaStore.Audio.Media.SIZE, "duration"};
         Cursor cursor = mContext.getContentResolver().query(
             MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, audioColumns, null, null, null);
 
@@ -72,7 +73,7 @@ public class Dlna_MediaServer
                 long size = cursor.getLong(cursor
                         .getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE));
                 long duration = cursor.getLong(cursor
-                        .getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
+                        .getColumnIndexOrThrow("duration"));
 
                 String id = title + filePath.substring(filePath.lastIndexOf("."));//gpf add
 
@@ -84,6 +85,7 @@ public class Dlna_MediaServer
                 item.setUPnPClass(UPnP.OBJECT_ITEM_AUDIOITEM_AUDIO);
                 String url = "http://" + HostInterface.getIPv4Address() + ":" + port + "/"
                     + URLEncoder.encode(id);
+                Log.e("HTTP", url);
                 String protocolInfo = "http-get:" + "*:" + MIME_AUDIO + ":" + "*";
                 AttributeList attrList = new AttributeList();
                 Attribute attrSize = new Attribute("size", Long.toString(size));
